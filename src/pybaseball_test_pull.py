@@ -1,7 +1,7 @@
 # This script is intended to test the functionality of the pybaseball library
 # pip install git+https://github.com/jldbc/pybaseball.git
 import pybaseball
-# import pandas as pd
+import pandas as pd
 # from datetime import date, timedelta
 
 
