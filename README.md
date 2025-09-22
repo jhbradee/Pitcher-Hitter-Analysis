@@ -1,16 +1,13 @@
 # Pitcher/Hitter Analysis
-Baseball data for pitchers and hitters to analyze probable outcome of at-bat for hitters. Potential to add probable pitch sequence of pitchers.
+Baseball data for pitchers and hitters to analyze probable outcome of at-bat for hitters. As of 9/2025, this model has ~60% accuracy. Potential to add probable pitch sequence of pitchers.
 
 ## Project Organization
 
 ```
-├── LICENSE            <- Open-source license if one is chosen
 ├── README.md          <- The top-level README for developers using this project
 ├── data
-│   ├── external       <- Data from third party sources
-│   ├── interim        <- Intermediate data that has been transformed
 │   ├── processed      <- The final, canonical data sets for modeling
-│   └── raw            <- The original, immutable data dump
+│   └── raw            <- The original, immutable data dump. This is pulled using pybaseball and Statcast data
 │
 ├── models             <- Trained and serialized models, model predictions, or model summaries
 │

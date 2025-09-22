@@ -44,8 +44,8 @@ def fetch_statcast_data(
 if __name__ == "__main__":
     # Define a reasonable historical range for initial data pull
     # Adjust these dates based on how much historical data you want to analyze
-    start_date_historical = "2025-07-29"  # Example start date (current_date-2)
-    end_date_historical = "2025-07-30"  # Example end date (current_date-1)
+    start_date_historical = "2024-04-01"  # Example start date
+    end_date_historical = "2024-10-30"  # Example end date
 
     # Fetch Statcast data for the defined date range
     fetch_statcast_data(start_date_historical, end_date_historical)

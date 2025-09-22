@@ -2,14 +2,14 @@ import pandas as pd
 import pybaseball
 
 # setting up dataframe and other variables
-raw_data_path = "/Users/jessi/Documents/GitHub Repositories/Pitcher-Hitter-Analysis/data/raw/statcast_raw_2025-07-29_2025-07-30.parquet"
-july29_30_df = pd.read_parquet(raw_data_path)
+raw_data_path = "/Users/jessi/Documents/GitHub Repositories/Pitcher-Hitter-Analysis/data/raw/statcast_raw_2024-04-01_2024-10-30.parquet"
+regular_season_2024_df = pd.read_parquet(raw_data_path)
 
 # printing the first few rows of the dataframe and a summary of the columns and data types
 # print("Data fetched from Parquet file:")
-# print(july29_30_df.head())
+# print(regular_season_2024_df.head())
 # print("\nDataFrame Info:")
-# print(july29_30_df.info())
+# print(regular_season_2024_df.info())
 
 # Note: The above code assumes that the Parquet file exists at the specified path.
 
@@ -27,7 +27,9 @@ at_bat_ending_events = [
 ]
 
 # filter the dataframe to only include rows where the event is in our list
-filtered_df = july29_30_df[july29_30_df["events"].isin(at_bat_ending_events)].copy()
+filtered_df = regular_season_2024_df[
+    regular_season_2024_df["events"].isin(at_bat_ending_events)
+].copy()
 
 # remove any rows where 'pitcher' or 'batter' is missing
 filtered_df.dropna(subset=["pitcher", "batter"], inplace=True)
@@ -110,9 +112,9 @@ print("\nCombined Profile DataFrame:")
 print(combined_profile_df.head())
 
 combined_profile_df.to_parquet(
-    "/Users/jessi/Documents/GitHub Repositories/Pitcher-Hitter-Analysis/data/processed/combined_profile_2025-07-29_2025-07-30.parquet",
+    "/Users/jessi/Documents/GitHub Repositories/Pitcher-Hitter-Analysis/data/processed/combined_profile_2024-04-01_2024-10-30.parquet",
     index=False,
 )
 print(
-    "\nCombined profile data saved to 'data/processed/combined_profile_2025-07-29_2025-07-30.parquet', Successfully cleaned, transformed, and saved the data."
+    "\nCombined profile data saved to 'data/processed/combined_profile_2024-04-01_2024-10-30.parquet', Successfully cleaned, transformed, and saved the data."
 )
