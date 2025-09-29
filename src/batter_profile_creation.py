@@ -128,7 +128,7 @@ batter_by_pitch_type_df.columns = [
 batter_by_pitch_type_df.rename(
     columns={"pitch_type_count": "pitches_seen"}, inplace=True
 )
-batter_by_pitch_type_df.reset_index()
+batter_by_pitch_type_df = batter_by_pitch_type_df.reset_index()
 
 # add batter names
 batter_by_pitch_type_df = batter_by_pitch_type_df.merge(
@@ -213,11 +213,6 @@ batter_vs_handedness_df = (
     .round(3)
 )
 
-# flatten column names
-batter_vs_handedness_df.columns = [
-    "_".join([str(x) for x in col if x])
-    for col in batter_vs_handedness_df.columns.to_flat_index()
-]
 batter_vs_handedness_df.rename(
     columns={"pitch_type_count": "pitches_faced"}, inplace=True
 )
@@ -235,10 +230,20 @@ handedness_pivot = batter_vs_handedness_df.pivot_table(
     fill_value=np.nan,
 )
 
-# flatten multi-level columns with full stat name and handedness (e.g., 'is_hard_contact_mean_L')
+
+# flatten multi-level columns with full stat name and handedness (e.g., 'is_barrel_L')
+def flatten_col(col):
+    # col is a tuple like ('is_barrel_mean', 'L')
+    if len(col) > 1:
+        stat_name = col[0]  # Just take the first element directly
+        handedness = col[1]  # The handedness (L or R)
+        return f"{stat_name}_{handedness}"
+    else:
+        return col[0]
+
+
 handedness_pivot.columns = [
-    f"{'_'.join([str(x) for x in col if x])}"
-    for col in handedness_pivot.columns.to_flat_index()
+    flatten_col(col) for col in handedness_pivot.columns.to_flat_index()
 ]
 handedness_pivot = handedness_pivot.reset_index()
 
